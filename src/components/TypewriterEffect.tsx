@@ -23,7 +23,9 @@ const TypewriterEffect = ({
   const [showCursor, setShowCursor] = useState(true)
 
   useEffect(() => {
-    const currentString = strings[currentIndex]
+    if (!strings || strings.length === 0) return
+    
+    const currentString = strings[currentIndex] || ''
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
