@@ -38,8 +38,8 @@ const Contact = () => {
     {
       icon: FiLinkedin,
       label: 'LinkedIn',
-      value: '/in/arslan-kemal-gündüz',
-      href: 'https://www.linkedin.com/in/arslan-kemal-g%C3%BCnd%C3%BCz-8a2608194/',
+      value: '/in/arslan-kemal-gunduz',
+      href: 'https://www.linkedin.com/in/arslan-kemal-gunduz',
       color: 'text-blue-600'
     },
     {
@@ -155,7 +155,7 @@ const Contact = () => {
                 className="flex gap-4 pt-8"
               >
                 <motion.a
-                  href="/cv.pdf"
+                  href="/pdf/CV.pdf"
                   download
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
