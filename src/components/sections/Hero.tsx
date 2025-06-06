@@ -116,7 +116,7 @@ const Hero = () => {
             <TypewriterEffect
               strings={[
                 'Senior Software Developer',
-                '.NET Uzmanı',
+                '.NET Expert',
                 'FinTech Developer',
                 'SaaS Solutions Expert',
                 'React & Vue.js Developer',

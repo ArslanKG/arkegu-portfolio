@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiSend, FiCheck } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi'
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -19,6 +19,7 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const contactInfo = [
     {
@@ -56,21 +57,113 @@ const Contact = () => {
       ...formData,
       [e.target.name]: e.target.value
     })
+    
+    // Hata mesajını temizle
+    if (submitError) {
+      setSubmitError(null)
+    }
+  }
+
+  const validateForm = () => {
+    // Ad soyad kontrolü
+    if (!formData.name.trim()) {
+      setSubmitError('Lütfen ad soyad alanını doldurun.')
+      return false
+    }
+    
+    if (formData.name.trim().length < 2) {
+      setSubmitError('Ad soyad en az 2 karakter olmalıdır.')
+      return false
+    }
+
+    // Email kontrolü
+    if (!formData.email.trim()) {
+      setSubmitError('Lütfen e-posta adresinizi girin.')
+      return false
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      setSubmitError('Lütfen geçerli bir e-posta adresi girin.')
+      return false
+    }
+
+    // Konu kontrolü
+    if (!formData.subject.trim()) {
+      setSubmitError('Lütfen mesaj konusunu belirtin.')
+      return false
+    }
+
+    if (formData.subject.trim().length < 3) {
+      setSubmitError('Mesaj konusu en az 3 karakter olmalıdır.')
+      return false
+    }
+
+    // Mesaj kontrolü
+    if (!formData.message.trim()) {
+      setSubmitError('Lütfen mesajınızı yazın.')
+      return false
+    }
+
+    if (formData.message.trim().length < 10) {
+      setSubmitError('Mesajınız en az 10 karakter olmalıdır.')
+      return false
+    }
+
+    if (formData.message.trim().length > 2000) {
+      setSubmitError('Mesajınız en fazla 2000 karakter olabilir.')
+      return false
+    }
+
+    return true
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setSubmitError(null)
+    
+    // Form validasyonu
+    if (!validateForm()) {
+      return
+    }
+    
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSubmitted(false), 5000)
+    try {
+      const response = await fetch('/api/send-mail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setIsSubmitted(true)
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => setIsSubmitted(false), 5000)
+      } else {
+        // API'den gelen hata mesajını göster
+        setSubmitError(result.message || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.')
+      }
+    } catch (error) {
+      console.error('Form gönderim hatası:', error)
+      
+      // Bağlantı hatası detayları
+      if (error instanceof TypeError && error.message.includes('fetch')) {
+        setSubmitError('İnternet bağlantınızı kontrol edin ve tekrar deneyin.')
+      } else if (error instanceof Error && error.name === 'AbortError') {
+        setSubmitError('İstek zaman aşımına uğradı. Lütfen tekrar deneyin.')
+      } else {
+        setSubmitError('Beklenmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyin.')
+      }
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -186,7 +279,18 @@ const Contact = () => {
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 p-4 bg-red-500/20 border border-red-500/30 rounded-lg mb-6 text-red-400"
+                >
+                  <FiAlertCircle size={20} />
+                  {submitError}
+                </motion.div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6" noValidate>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
@@ -198,7 +302,6 @@ const Contact = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      required
                       className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:border-cyan-500 text-white placeholder-gray-400"
                       placeholder="Adınız Soyadınız"
                     />
@@ -209,12 +312,11 @@ const Contact = () => {
                       Email
                     </label>
                     <input
-                      type="email"
+                      type="text"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      required
                       className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:border-cyan-500 text-white placeholder-gray-400"
                       placeholder="email@example.com"
                     />
@@ -231,7 +333,6 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:border-cyan-500 text-white placeholder-gray-400"
                     placeholder="Mesaj konusu"
                   />
@@ -246,7 +347,6 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    required
                     rows={6}
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:border-cyan-500 text-white placeholder-gray-400 resize-none"
                     placeholder="Mesajınızı buraya yazın..."
