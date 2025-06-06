@@ -33,7 +33,7 @@ const Hero = () => {
     },
     {
       icon: FiLinkedin,
-      href: 'https://www.linkedin.com/in/arslan-kemal-g%C3%BCnd%C3%BCz-8a2608194/',
+      href: 'https://www.linkedin.com/in/arslan-kemal-gunduz',
       label: 'LinkedIn'
     },
     {
@@ -164,7 +164,7 @@ const Hero = () => {
             </motion.button>
 
             <motion.a
-              href="/cv.pdf"
+              href="/pdf/CV.pdf"
               download
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

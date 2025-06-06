@@ -128,7 +128,7 @@ Canlı demo: [Portfolio Website](https://arkegu-portfolio.vercel.app)
 
 **Arslan Kemal Gündüz**
 - Email: arslankemalgunduz@gmail.com
-- LinkedIn: [arslan-kemal-gunduz](https://www.linkedin.com/in/arslan-kemal-g%C3%BCnd%C3%BCz-8a2608194)
+- LinkedIn: [arslan-kemal-gunduz](https://www.linkedin.com/in/arslan-kemal-gunduz)
 - GitHub: [@ArslanKG](https://github.com/ArslanKG)
 
 ## 🤝 Katkıda Bulunma
