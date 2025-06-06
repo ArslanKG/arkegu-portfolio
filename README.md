@@ -12,7 +12,8 @@ Modern ve interaktif kişisel portfolio websitesi. Cyberpunk/futuristik tema ile
 - **Dark/Light Mode**: Kullanıcı tercihine uygun tema seçenekleri
 - **Scroll Animasyonları**: Sayfa kaydırma sırasında etkileyici geçişler
 - **Proje Showcase**: Detaylı proje kartları ve modal görünümler
-- **İletişim Formu**: Direkt iletişim imkanı
+- **İletişim Formu**: Brevo SMTP API ile gerçek mail gönderimi
+- **Email Entegrasyonu**: Güvenli environment variables ile API yönetimi
 
 ## 🛠️ Teknolojiler
 
@@ -22,6 +23,10 @@ Modern ve interaktif kişisel portfolio websitesi. Cyberpunk/futuristik tema ile
 - **Tailwind CSS** - Utility-first CSS framework
 - **Framer Motion** - Animation library
 - **React Icons** - Icon library
+
+### Backend & API
+- **Next.js API Routes** - Serverless API endpoints
+- **Brevo SMTP API** - Email gönderim servisi
 
 ### Geliştirme Araçları
 - **ESLint** - Code linting
@@ -55,7 +60,47 @@ yarn dev
 http://localhost:3000
 ```
 
-## 📁 Proje Yapısı
+## 📧 Email Konfigürasyonu
+
+İletişim formunun çalışması için email entegrasyonu kurulumu gereklidir:
+
+### 1. Brevo Hesabı Oluşturma
+1. [Brevo.com](https://www.brevo.com) adresine gidin
+2. Ücretsiz hesap oluşturun
+3. Dashboard → SMTP & API → API Keys bölümüne gidin
+4. "Create a new API key" ile yeni anahtar oluşturun
+5. SMTP izninin aktif olduğundan emin olun
+
+### 2. Environment Variables Kurulumu
+1. `.env.example` dosyasını `.env.local` olarak kopyalayın:
+```bash
+cp .env.example .env.local
+```
+
+2. `.env.local` dosyasını düzenleyin:
+```env
+# Brevo SMTP API Ayarları
+BREVO_API_KEY=your-brevo-api-key-here
+RECIPIENT_EMAIL=your-email@example.com
+
+# Mail gönderen bilgileri (opsiyonel)
+SENDER_NAME=Portfolio İletişim Formu
+SENDER_EMAIL=noreply@your-domain.com
+```
+
+### 3. Güvenlik Notları
+- `.env.local` dosyası zaten `.gitignore`'da bulunur
+- API anahtarlarınızı asla public repository'lerde paylaşmayın
+- Production'da Vercel/Netlify environment variables kullanın
+
+### 4. Production Deployment
+Vercel/Netlify'da environment variables ekleyin:
+- `BREVO_API_KEY`: Brevo API anahtarınız
+- `RECIPIENT_EMAIL`: Mesajları alacağınız email
+- `SENDER_NAME`: Gönderen adı (opsiyonel)
+- `SENDER_EMAIL`: Gönderen email (opsiyonel)
+
+##  Proje Yapısı
 
 ```
 arkegu-portfolio/
