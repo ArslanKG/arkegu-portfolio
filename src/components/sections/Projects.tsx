@@ -45,30 +45,30 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'Everything is a Reflection',
-      subtitle: '3D Visual Effects Application',
-      description: '3D yansıma efekti uygulaması. WebGL2 ve GLSL shaders kullanılarak oluşturulan bu proje, advanced graphics programming ve modern web technologies\'in birleşimi ile etkileyici visual effects sunmaktadır.',
-      longDescription: 'Bu proje, modern web tarayıcılarında 3D graphics ve visual effects konusundaki derinlemesine bilgiyi sergileyen bir showcase\'dur. WebGL2 API\'si, custom GLSL shaders ve TypeScript kullanılarak geliştirilmiştir. Remix framework\'ü ile server-side rendering optimizasyonları yapılmış, performant ve görsel olarak etkileyici bir deneyim oluşturulmuştur.',
-      image: '/images/reflection-3d.jpg',
+      title: 'Parla Group Corporate Website',
+      subtitle: 'Modern Kurumsal Web Sitesi',
+      description: 'Türkiye\'nin önde gelen inşaat ve kentsel dönüşüm şirketi Parla Group için geliştirilmiş modern, responsive kurumsal web sitesi. Next.js 15, Tailwind CSS ve TypeScript kullanılarak oluşturulmuştur.',
+      longDescription: 'Parla Group Corporate Website, modern web teknolojileri kullanılarak geliştirilen tam responsive kurumsal web sitesidir. Next.js 15 App Router, Tailwind CSS 4, TypeScript ve Framer Motion ile oluşturulan bu proje, SEO optimizasyonu, hızlı performans ve erişilebilirlik standartlarını karşılamaktadır. Çok dilli yapı desteği, gelişmiş animasyonlar ve kullanıcı dostu arayüz ile profesyonel bir kurumsal kimlik sunmaktadır.',
+      image: '/images/parla-logo.png',
       technologies: [
+        { name: 'React', icon: SiReact, color: 'text-blue-400' },
         { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
         { name: 'CSS3', icon: SiCss3, color: 'text-blue-500' },
-        { name: 'Remix', icon: SiRemix, color: 'text-white' },
-        { name: 'WebGL2', icon: SiJavascript, color: 'text-red-400' },
+        { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400' },
       ],
       links: {
-        live: 'https://codepen.io/atzedent/pen/PovvpvR',
-        github: '#',
+        live: 'https://parla-group-website.vercel.app/',
+        github: 'https://github.com/ArslanKG/parla-group-website',
       },
-      category: '3D Graphics',
+      category: 'Corporate Website',
       year: '2024',
-      status: 'Showcase',
+      status: 'Active',
       features: [
-        '3D Reflection Effects',
-        'WebGL2 Implementation',
-        'Custom GLSL Shaders',
+        'Modern Responsive Design',
+        'SEO Optimization',
+        'Multi-language Support',
         'Performance Optimization',
-        'Visual Effects Programming'
+        'WCAG Accessibility Standards'
       ]
     },
     {
@@ -272,12 +272,21 @@ const Projects = () => {
                           </div>
                         </div>
                       ) : project.id === 2 ? (
-                        // Everything is a Reflection özel resmi
-                        <img
-                          src="/images/Reflection_Effect.png"
-                          alt="Everything is a Reflection"
-                          className="w-full h-full object-contain bg-gradient-to-br from-purple-900/20 to-cyan-900/20"
-                        />
+                        // Parla Group özel resmi
+                        <div className="w-full h-full bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900 flex flex-col items-center justify-center p-4">
+                          <img src="/images/parla-logo.png" alt="Parla Group Logo" className="w-32 h-32 mb-4" />
+                          <div className="text-2xl font-bold text-white mb-1">
+                            Parla Group
+                          </div>
+                          <div className="text-sm text-orange-200 text-center">
+                            Corporate Website
+                          </div>
+                          <div className="flex gap-2 mt-3">
+                            <div className="text-xs px-2 py-1 bg-orange-500/20 text-orange-300 rounded">Next.js</div>
+                            <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">TypeScript</div>
+                            <div className="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded">Tailwind</div>
+                          </div>
+                        </div>
                       ) : project.id === 3 ? (
                         // 404 Superman Page özel resmi
                         <img
