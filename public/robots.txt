@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://arkegu-portfolio.vercel.app
+
+# Sitemaps
+Sitemap: https://arkegu-portfolio.vercel.app/sitemap.xml

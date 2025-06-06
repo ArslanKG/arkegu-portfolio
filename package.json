@@ -1,0 +1,50 @@
+{
+  "name": "arkegu-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Arslan Kemal Gündüz - Senior Software Developer Portfolio",
+  "author": "Arslan Kemal Gündüz <arslankemalgunduz@gmail.com>",
+  "homepage": "https://arkegu-portfolio.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArslanKG/arkegu-portfolio.git"
+  },
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "framer-motion",
+    "software-developer",
+    "frontend",
+    "fullstack"
+  ],
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "framer-motion": "^10.16.16",
+    "react-icons": "^4.12.0",
+    "next-themes": "^0.2.1",
+    "react-intersection-observer": "^9.5.3",
+    "typed.js": "^2.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0"
+  }
+}
