@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Experience from '@/components/sections/Experience'
@@ -9,7 +10,12 @@ import Projects from '@/components/sections/Projects'
 import Contact from '@/components/sections/Contact'
 import Navigation from '@/components/Navigation'
 import ThemeToggle from '@/components/ThemeToggle'
-import ParticleBackground from '@/components/ParticleBackground'
+
+// Sadece ParticleBackground'u lazy load et (non-critical)
+const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" />
+})
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -19,7 +25,11 @@ export default function Home() {
   }, [])
 
   if (!mounted) {
-    return null
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center">
+        <div className="animate-pulse text-cyan-400 text-xl">Portfolio yükleniyor...</div>
+      </div>
+    )
   }
 
   return (

@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Arslan Kemal Gündüz Portfolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/arkegu-logo.png',
         width: 1200,
         height: 630,
         alt: 'Arslan Kemal Gündüz - Senior Software Developer',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Arslan Kemal Gündüz | Senior Software Developer',
     description: 'Senior Software Developer specializing in .NET, Cloud, FinTech, and modern web technologies.',
-    images: ['/og-image.jpg'],
+    images: ['/images/arkegu-logo.png'],
   },
   robots: {
     index: true,
