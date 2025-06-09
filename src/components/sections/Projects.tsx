@@ -17,85 +17,89 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Arkegu AI',
-      subtitle: 'Akıllı Prompt Optimizasyonlu Chat Bot',
+      title: 'Arkegu Portfolio',
+      subtitle: 'Cyberpunk Temalı Modern Portfolio',
+      description: 'Modern, güvenli ve performans odaklı portfolio websitesi. Next.js 14, TypeScript ve Tailwind CSS ile geliştirilmiş, particle efektleri, typewriter animasyonu ve dark/light mode desteği bulunan responsive tasarım.',
+      longDescription: 'Arkegu Portfolio, modern web teknolojilerinin en iyi örneklerinden biri olarak tasarlanmış cyberpunk temalı portfolio websitesidir. Next.js 14 App Router, TypeScript ve Tailwind CSS kullanılarak geliştirilen bu proje, enterprise seviyede güvenlik özellikleri, particle background efektleri, typewriter animasyonları ve tam responsive tasarım ile dikkat çeker. Framer Motion animasyonları, dark/light theme desteği ve SEO optimizasyonu ile modern web standartlarını karşılamaktadır.',
+      image: '/images/arkegu-portfolio.png',
+      technologies: [
+        { name: 'React', icon: SiReact, color: 'text-blue-400' },
+        { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
+        { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400' },
+        { name: 'CSS3', icon: SiCss3, color: 'text-blue-500' },
+      ],
+      links: {
+        live: 'https://arkegu-portfolio.vercel.app',
+        github: 'https://github.com/ArslanKG/arkegu-portfolio',
+      },
+      category: 'Portfolio Website',
+      year: '2024',
+      status: 'Active',
+      features: [
+        'Particle Background Effects',
+        'Typewriter Animation',
+        'Dark/Light Theme',
+        'Fully Responsive Design',
+        'Enterprise Security',
+        'SEO Optimization'
+      ]
+    },
+    {
+      id: 2,
+      title: 'Prompt Optimizer',
+      subtitle: 'AI Prompt Optimizasyon Sistemi',
       description: 'Akıllı chat bot platformu. Kullanıcının yazdığı prompt\'u otomatik olarak optimize edip yapay zekaya ileterek, geleneksel chat bot\'lardan çok daha kaliteli ve etkili yanıtlar elde etmenizi sağlayan innovative bir AI asistanı.',
-      longDescription: 'Arkegu AI, diğer chat bot\'lardan farklı olarak iki aşamalı bir yaklaşım benimser. İlk aşamada, kullanıcının yazdığı prompt\'u gelişmiş algoritmalarla analiz ederek optimize eder. İkinci aşamada, bu optimize edilmiş prompt\'u yapay zekaya göndererek çok daha kaliteli, anlaşılır ve hedef odaklı yanıtlar almanızı sağlar. React, Zustand ve modern web teknolojileri kullanılarak geliştirilmiş bu platform, AI ile etkileşimde yeni bir standart oluşturmaktadır.',
+      longDescription: 'Prompt Optimizer, diğer chat bot\'lardan farklı olarak iki aşamalı bir yaklaşım benimser. İlk aşamada, kullanıcının yazdığı prompt\'u gelişmiş algoritmalarla analiz ederek optimize eder. İkinci aşamada, bu optimize edilmiş prompt\'u yapay zekaya göndererek çok daha kaliteli, anlaşılır ve hedef odaklı yanıtlar almanızı sağlar. React Frontend + .NET 8 Backend, MCP Server Implementation ve çoklu AI model stratejisi ile AI ile etkileşimde yeni bir standart oluşturmaktadır.',
       image: '/images/arkegu-ai.jpg',
       technologies: [
         { name: 'React', icon: SiReact, color: 'text-blue-400' },
         { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400' },
         { name: '.Net', icon: SiDotnet, color: 'text-purple-400' },
-        { name: 'Axios', icon: SiJavascript, color: 'text-green-400' },
+        { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
       ],
       links: {
         live: 'https://arkeguai.vercel.app/',
         github: 'https://github.com/ArslanKG/prompt-optimizer-frontend',
       },
-      category: 'Web Application',
+      category: 'AI Application',
       year: '2024',
       status: 'Active',
       features: [
-        'Otomatik Prompt Optimizasyonu',
-        'İki Aşamalı AI Yanıt Sistemi',
+        '7 Farklı AI Model Desteği',
+        'Prompt Optimizasyon Algoritmaları',
+        'Public Chat (Auth-free)',
+        'Model Karşılaştırma Tools',
         'Real-time Chat Interface',
-        'Gelişmiş Yanıt Kalitesi',
-        'Kullanıcı Dostu Arayüz'
-      ]
-    },
-    {
-      id: 2,
-      title: 'Parla Group Corporate Website',
-      subtitle: 'Modern Kurumsal Web Sitesi',
-      description: 'Türkiye\'nin önde gelen inşaat ve kentsel dönüşüm şirketi Parla Group için geliştirilmiş modern, responsive kurumsal web sitesi. Next.js 15, Tailwind CSS ve TypeScript kullanılarak oluşturulmuştur.',
-      longDescription: 'Parla Group Corporate Website, modern web teknolojileri kullanılarak geliştirilen tam responsive kurumsal web sitesidir. Next.js 15 App Router, Tailwind CSS 4, TypeScript ve Framer Motion ile oluşturulan bu proje, SEO optimizasyonu, hızlı performans ve erişilebilirlik standartlarını karşılamaktadır. Çok dilli yapı desteği, gelişmiş animasyonlar ve kullanıcı dostu arayüz ile profesyonel bir kurumsal kimlik sunmaktadır.',
-      image: '/images/parla-logo.png',
-      technologies: [
-        { name: 'React', icon: SiReact, color: 'text-blue-400' },
-        { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
-        { name: 'CSS3', icon: SiCss3, color: 'text-blue-500' },
-        { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400' },
-      ],
-      links: {
-        live: 'https://parla-group-website.vercel.app/',
-        github: 'https://github.com/ArslanKG/parla-group-website',
-      },
-      category: 'Corporate Website',
-      year: '2024',
-      status: 'Active',
-      features: [
-        'Modern Responsive Design',
-        'SEO Optimization',
-        'Multi-language Support',
-        'Performance Optimization',
-        'WCAG Accessibility Standards'
+        'MCP Server Implementation'
       ]
     },
     {
       id: 3,
-      title: '404 Superman Page',
-      subtitle: 'Animated Error Page',
-      description: 'Animasyonlu özel hata sayfası. Creative CSS animations ve JavaScript interactions ile kullanıcı experience\'ını geliştiren, eğlenceli ve engaging bir 404 error page implementasyonu.',
-      longDescription: 'Bu proje, geleneksel hata sayfalarından farklı olarak kullanıcı deneyimini iyileştirmeyi hedefleyen yaratıcı bir yaklaşımdır. Superman teması ile tasarlanan sayfa, CSS animations, JavaScript interactions ve responsive design principles kullanılarak geliştirilmiştir. Kullanıcıların hata ile karşılaştığında frustration yerine pozitif bir deneyim yaşamasını sağlamaktadır.',
-      image: '/images/superman-404.jpg',
+      title: 'TuneSync - Playlist Transfer API',
+      subtitle: 'Spotify to YouTube Music Transfer',
+      description: 'Spotify playlist\'lerinizi YouTube Music\'e sorunsuz bir şekilde aktaran modern web uygulaması. OAuth 2.0 kimlik doğrulama, akıllı eşleşme algoritması ve real-time transfer durumu takibi ile gelişmiş müzik transfer çözümü.',
+      longDescription: 'TuneSync, ASP.NET Core 9.0 ile geliştirilmiş modern bir playlist transfer API\'sidir. Spotify ve YouTube Music arasında güvenli OAuth 2.0 kimlik doğrulaması kullanarak playlist transferi gerçekleştirir. Akıllı eşleşme algoritması ile şarkıları bulur, rate limiting ile API abuse\'ü önler ve real-time progress tracking ile kullanıcı deneyimini optimize eder. Docker desteği, security headers, health checks ve production-ready özellikler ile enterprise seviyede bir çözüm sunar.',
+      image: '/images/tunesync-project.png',
       technologies: [
+        { name: '.Net', icon: SiDotnet, color: 'text-purple-400' },
+        { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
+        { name: 'React', icon: SiReact, color: 'text-blue-400' },
         { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-400' },
-        { name: 'CSS3', icon: SiCss3, color: 'text-blue-500' },
-        { name: 'HTML5', icon: SiHtml5, color: 'text-orange-400' },
       ],
       links: {
-        live: 'https://codepen.io/ArslanKG/pen/vYodGOd',
-        github: '#',
+        live: 'https://tunesync.onrender.com/',
+        github: 'https://github.com/ArslanKG/MusicTransferHub',
       },
-      category: 'UI/UX Design',
+      category: 'Web API',
       year: '2024',
-      status: 'Showcase',
+      status: 'Active',
       features: [
-        'Creative Animations',
-        'Interactive Elements',
-        'Responsive Design',
-        'User Experience Focus',
-        'Character-based Theme'
+        'OAuth 2.0 Authentication',
+        'Smart Music Matching Algorithm',
+        'Real-time Transfer Progress',
+        'Rate Limiting & Security',
+        'Docker Production Ready',
+        'Health Monitoring System'
       ]
     }
   ]
@@ -256,14 +260,30 @@ const Projects = () => {
                     {/* Project Image */}
                     <div className="absolute inset-0 w-full h-full">
                       {project.id === 1 ? (
-                        // Arkegu AI özel resmi
-                        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center p-4">
-                          <img src="/images/arkegu-logo.png" alt="Arkegu AI Logo" className="w-24 h-24" />
-                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-1">
-                            Arkegu AI
+                        // Arkegu Portfolio özel resmi
+                        <div className="w-full h-full bg-gradient-to-br from-purple-900 via-pink-900 to-cyan-900 flex flex-col items-center justify-center p-4">
+                          <img src="/images/arkegu-logo.png" alt="Arkegu Portfolio Logo" className="w-24 h-24" />
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-1">
+                            Arkegu Portfolio
                           </div>
                           <div className="text-sm text-gray-300 text-center">
-                            Prompt Optimizasyon Platformu
+                            Cyberpunk Temalı Portfolio
+                          </div>
+                          <div className="flex gap-2 mt-3">
+                            <div className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded">Next.js</div>
+                            <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">TypeScript</div>
+                            <div className="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded">Tailwind</div>
+                          </div>
+                        </div>
+                      ) : project.id === 2 ? (
+                        // Prompt Optimizer özel resmi
+                        <div className="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center p-4">
+                          <img src="/images/arkegu-logo.png" alt="Prompt Optimizer Logo" className="w-24 h-24" />
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-1">
+                            Prompt Optimizer
+                          </div>
+                          <div className="text-sm text-gray-300 text-center">
+                            AI Prompt Optimizasyon Sistemi
                           </div>
                           <div className="flex gap-2 mt-3">
                             <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">AI</div>
@@ -271,29 +291,33 @@ const Projects = () => {
                             <div className="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded">.Net</div>
                           </div>
                         </div>
-                      ) : project.id === 2 ? (
-                        // Parla Group özel resmi
-                        <div className="w-full h-full bg-gradient-to-br from-orange-900 via-orange-800 to-orange-900 flex flex-col items-center justify-center p-4">
-                          <img src="/images/parla-logo.png" alt="Parla Group Logo" className="w-32 h-32 mb-4" />
-                          <div className="text-2xl font-bold text-white mb-1">
-                            Parla Group
+                      ) : project.id === 3 ? (
+                        // TuneSync özel resmi
+                        <div className="w-full h-full bg-gradient-to-br from-green-900 via-red-900 to-purple-900 flex flex-col items-center justify-center p-4">
+                          <div className="flex items-center gap-4 mb-4">
+                            {/* Spotify Icon */}
+                            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                              <div className="text-white text-lg font-bold">♫</div>
+                            </div>
+                            {/* Transfer Arrow */}
+                            <div className="text-2xl text-white animate-pulse">→</div>
+                            {/* YouTube Music Icon */}
+                            <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                              <div className="text-white text-lg font-bold">▶</div>
+                            </div>
                           </div>
-                          <div className="text-sm text-orange-200 text-center">
-                            Corporate Website
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-red-400 mb-1">
+                            TuneSync
+                          </div>
+                          <div className="text-sm text-gray-300 text-center">
+                            Playlist Transfer API
                           </div>
                           <div className="flex gap-2 mt-3">
-                            <div className="text-xs px-2 py-1 bg-orange-500/20 text-orange-300 rounded">Next.js</div>
-                            <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">TypeScript</div>
-                            <div className="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded">Tailwind</div>
+                            <div className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded">.NET</div>
+                            <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">API</div>
+                            <div className="text-xs px-2 py-1 bg-green-500/20 text-green-300 rounded">OAuth</div>
                           </div>
                         </div>
-                      ) : project.id === 3 ? (
-                        // 404 Superman Page özel resmi
-                        <img
-                          src="/images/superman_project.png"
-                          alt="404 Superman Page"
-                          className="w-full h-full object-contain bg-gradient-to-br from-blue-900/20 to-purple-900/20"
-                        />
                       ) : (
                         <img
                           src={`https://via.placeholder.com/400x300/1f2937/60a5fa?text=${encodeURIComponent(project.title)}`}

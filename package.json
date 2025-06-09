@@ -27,7 +27,12 @@
     "lint:fix": "next lint --fix",
     "type-check": "tsc --noEmit",
     "analyze": "cross-env ANALYZE=true next build",
-    "security-audit": "npm audit --audit-level high"
+    "security-audit": "npm audit --audit-level high",
+    "mcp:dev": "node -r ts-node/register mcp/examples/basic-server.ts",
+    "mcp:tool-example": "node -r ts-node/register mcp/examples/custom-tool.ts",
+    "mcp:type-check": "tsc --noEmit --project mcp/tsconfig.json",
+    "mcp:build": "tsc --project mcp/tsconfig.json",
+    "mcp:clean": "rimraf mcp/dist"
   },
   "dependencies": {
     "next": "14.0.4",
