@@ -58,19 +58,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 
-  // Font optimizasyonu
+  // Bundle analyzer (sadece gerektiğinde)
   webpack: (config, { isServer }) => {
-    config.module.rules.push({
-      test: /\.(woff|woff2|eot|ttf|otf)$/,
-      use: {
-        loader: 'file-loader',
-        options: {
-          publicPath: '/_next/static/fonts/',
-          outputPath: 'static/fonts/',
-        },
-      },
-    });
-
     // Bundle analyzer (development) - sadece dependency varsa
     if (!isServer && process.env.ANALYZE === 'true') {
       try {
@@ -89,10 +78,8 @@ const nextConfig = {
     return config;
   },
 
-  // Experimental features
-  experimental: {
-    optimizeCss: true,
-  },
+  // Output konfigürasyonu
+  output: 'standalone',
 }
 
 module.exports = nextConfig
