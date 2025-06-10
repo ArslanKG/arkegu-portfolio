@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { FiMail, FiPhone, FiMapPin, FiLinkedin, FiGithub, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi'
+import CVDownloadDropdown from '@/components/CVDownloadDropdown'
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -245,17 +246,9 @@ const Contact = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 1.0 }}
-                className="flex gap-4 pt-8"
+                className="pt-8"
               >
-                <motion.a
-                  href="/pdf/CV.pdf"
-                  download
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-colors font-medium"
-                >
-                  CV İndir
-                </motion.a>
+                <CVDownloadDropdown variant="primary" />
               </motion.div>
             </motion.div>
 

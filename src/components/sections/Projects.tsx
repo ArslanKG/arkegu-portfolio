@@ -17,11 +17,11 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Arkegu Portfolio',
-      subtitle: 'Cyberpunk Temalı Modern Portfolio',
-      description: 'Modern, güvenli ve performans odaklı portfolio websitesi. Next.js 14, TypeScript ve Tailwind CSS ile geliştirilmiş, particle efektleri, typewriter animasyonu ve dark/light mode desteği bulunan responsive tasarım.',
-      longDescription: 'Arkegu Portfolio, modern web teknolojilerinin en iyi örneklerinden biri olarak tasarlanmış cyberpunk temalı portfolio websitesidir. Next.js 14 App Router, TypeScript ve Tailwind CSS kullanılarak geliştirilen bu proje, enterprise seviyede güvenlik özellikleri, particle background efektleri, typewriter animasyonları ve tam responsive tasarım ile dikkat çeker. Framer Motion animasyonları, dark/light theme desteği ve SEO optimizasyonu ile modern web standartlarını karşılamaktadır.',
-      image: '/images/arkegu-portfolio.png',
+      title: 'Parla Group Corporate Website',
+      subtitle: 'Modern Kurumsal Website',
+      description: 'Parla Group için geliştirilmiş modern, responsive kurumsal website. Next.js 15, Tailwind CSS 4 ve TypeScript ile inşa edilmiş, kentsel dönüşüm, inşaat ve mimarlık hizmetlerini sergileyen profesyonel kurumsal çözüm.',
+      longDescription: 'Parla Group Corporate Website, Türkiye\'nin önde gelen inşaat ve kentsel dönüşüm şirketi için tasarlanmış modern bir kurumsal websitedir. Next.js 15 App Router, Tailwind CSS 4 ve TypeScript kullanılarak geliştirilen bu proje, şirketin hizmetlerini, projelerini ve kurumsal değerlerini profesyonel bir şekilde sunmaktadır. SEO optimizasyonu, accessibility standartları ve modern tasarım prensipleri ile kullanıcı deneyimini optimize etmektedir.',
+      image: '/images/parla-logo.png',
       technologies: [
         { name: 'React', icon: SiReact, color: 'text-blue-400' },
         { name: 'TypeScript', icon: SiTypescript, color: 'text-blue-400' },
@@ -29,27 +29,27 @@ const Projects = () => {
         { name: 'CSS3', icon: SiCss3, color: 'text-blue-500' },
       ],
       links: {
-        live: 'https://arkegu-portfolio.vercel.app',
-        github: 'https://github.com/ArslanKG/arkegu-portfolio',
+        live: 'https://parla-group-website.vercel.app',
+        github: '#',
       },
-      category: 'Portfolio Website',
+      category: 'Corporate Website',
       year: '2024',
       status: 'Active',
       features: [
-        'Particle Background Effects',
-        'Typewriter Animation',
-        'Dark/Light Theme',
-        'Fully Responsive Design',
-        'Enterprise Security',
-        'SEO Optimization'
+        'Modern Corporate Design',
+        'Fully Responsive Layout',
+        'SEO Optimization',
+        'Service Showcase',
+        'Project Portfolio',
+        'Contact Integration'
       ]
     },
     {
       id: 2,
-      title: 'Prompt Optimizer',
+      title: 'Arkegu AI',
       subtitle: 'AI Prompt Optimizasyon Sistemi',
       description: 'Akıllı chat bot platformu. Kullanıcının yazdığı prompt\'u otomatik olarak optimize edip yapay zekaya ileterek, geleneksel chat bot\'lardan çok daha kaliteli ve etkili yanıtlar elde etmenizi sağlayan innovative bir AI asistanı.',
-      longDescription: 'Prompt Optimizer, diğer chat bot\'lardan farklı olarak iki aşamalı bir yaklaşım benimser. İlk aşamada, kullanıcının yazdığı prompt\'u gelişmiş algoritmalarla analiz ederek optimize eder. İkinci aşamada, bu optimize edilmiş prompt\'u yapay zekaya göndererek çok daha kaliteli, anlaşılır ve hedef odaklı yanıtlar almanızı sağlar. React Frontend + .NET 8 Backend, MCP Server Implementation ve çoklu AI model stratejisi ile AI ile etkileşimde yeni bir standart oluşturmaktadır.',
+      longDescription: 'Arkegu AI, diğer chat bot\'lardan farklı olarak iki aşamalı bir yaklaşım benimser. İlk aşamada, kullanıcının yazdığı prompt\'u gelişmiş algoritmalarla analiz ederek optimize eder. İkinci aşamada, bu optimize edilmiş prompt\'u yapay zekaya göndererek çok daha kaliteli, anlaşılır ve hedef odaklı yanıtlar almanızı sağlar. React Frontend + .NET 8 Backend, MCP Server Implementation ve çoklu AI model stratejisi ile AI ile etkileşimde yeni bir standart oluşturmaktadır.',
       image: '/images/arkegu-ai.jpg',
       technologies: [
         { name: 'React', icon: SiReact, color: 'text-blue-400' },
@@ -260,27 +260,26 @@ const Projects = () => {
                     {/* Project Image */}
                     <div className="absolute inset-0 w-full h-full">
                       {project.id === 1 ? (
-                        // Arkegu Portfolio özel resmi
-                        <div className="w-full h-full bg-gradient-to-br from-purple-900 via-pink-900 to-cyan-900 flex flex-col items-center justify-center p-4">
-                          <img src="/images/arkegu-logo.png" alt="Arkegu Portfolio Logo" className="w-24 h-24" />
-                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-1">
-                            Arkegu Portfolio
+                        // Parla Group özel resmi
+                        <div className="w-full h-full bg-gradient-to-br from-orange-900 via-gray-900 to-blue-900 flex flex-col items-center justify-center p-4">
+                          <img src="/images/parla-logo.png" alt="Parla Group Logo" className="w-24 h-24 mb-2" />
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-blue-400 mb-1">
+                            Parla Group
                           </div>
                           <div className="text-sm text-gray-300 text-center">
-                            Cyberpunk Temalı Portfolio
+                            Modern Kurumsal Website
                           </div>
                           <div className="flex gap-2 mt-3">
-                            <div className="text-xs px-2 py-1 bg-purple-500/20 text-purple-300 rounded">Next.js</div>
+                            <div className="text-xs px-2 py-1 bg-orange-500/20 text-orange-300 rounded">Next.js 15</div>
                             <div className="text-xs px-2 py-1 bg-blue-500/20 text-blue-300 rounded">TypeScript</div>
-                            <div className="text-xs px-2 py-1 bg-cyan-500/20 text-cyan-300 rounded">Tailwind</div>
+                            <div className="text-xs px-2 py-1 bg-gray-500/20 text-gray-300 rounded">Tailwind</div>
                           </div>
                         </div>
                       ) : project.id === 2 ? (
-                        // Prompt Optimizer özel resmi
                         <div className="w-full h-full bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex flex-col items-center justify-center p-4">
                           <img src="/images/arkegu-logo.png" alt="Prompt Optimizer Logo" className="w-24 h-24" />
                           <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-1">
-                            Prompt Optimizer
+                            Arkegu AI
                           </div>
                           <div className="text-sm text-gray-300 text-center">
                             AI Prompt Optimizasyon Sistemi

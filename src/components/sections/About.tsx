@@ -2,13 +2,14 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FiCode, FiCloud, FiDatabase, FiLayers } from 'react-icons/fi'
+import { FiCode, FiCloud, FiDatabase, FiLayers, FiFileText } from 'react-icons/fi'
 import {
   SiReact, SiVuedotjs, SiTypescript, SiDotnet,
   SiMicrosoftazure, SiMongodb, SiPostgresql, SiJavascript,
   SiHtml5, SiCss3, SiTailwindcss, SiGit, SiSqlite,
   SiJquery, SiJenkins, SiJira, SiBitbucket, SiCsharp
 } from 'react-icons/si'
+import CVDownloadDropdown from '@/components/CVDownloadDropdown'
 
 const About = () => {
   const [ref, inView] = useInView({
@@ -148,6 +149,26 @@ const About = () => {
                   </motion.div>
                 ))}
               </div>
+
+              {/* CV Download Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 1.0 }}
+                className="pt-8 border-t border-gray-700/50"
+              >
+                <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-2">
+                  <FiFileText className="text-blue-400" />
+                  CV İndir
+                </h3>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={inView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ delay: 1.1 }}
+                >
+                  <CVDownloadDropdown variant="primary" className="w-full sm:w-auto" />
+                </motion.div>
+              </motion.div>
             </motion.div>
 
             {/* Skills */}

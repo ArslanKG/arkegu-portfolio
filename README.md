@@ -20,6 +20,23 @@ Modern, güvenli ve performans odaklı portfolio websitesi. Next.js 14, TypeScri
 <tr>
 <td width="33%">
 
+#### 🏢 [Parla Group Corporate Website](https://parla-group-website.vercel.app)
+**Modern Kurumsal Website**
+- Next.js 15 + TypeScript
+- Tailwind CSS 4 + Framer Motion
+- Fully Responsive Design
+- **[🌐 Canlı Demo](https://parla-group-website.vercel.app)**
+
+**Özellikler:**
+- 🏗️ Kentsel dönüşüm hizmetleri
+- 🏢 Modern kurumsal tasarım
+- 📱 Tam responsive
+- ⚡ Next.js 15 performance
+- 🔍 SEO optimizasyonu
+
+</td>
+<td width="33%">
+
 #### 🎨 [Arkegu Portfolio](https://github.com/ArslanKG/arkegu-portfolio)
 **Cyberpunk Temalı Modern Portfolio**
 - Next.js 14 + TypeScript
@@ -36,7 +53,7 @@ Modern, güvenli ve performans odaklı portfolio websitesi. Next.js 14, TypeScri
 </td>
 <td width="33%">
 
-#### 🤖 [Prompt Optimizer](https://github.com/ArslanKG/prompt-optimizer-frontend)
+#### 🤖 [Arkegu AI](https://github.com/ArslanKG/prompt-optimizer-frontend)
 **AI Prompt Optimizasyon Sistemi**
 - React Frontend + .NET 8 Backend
 - MCP Server Implementation
@@ -51,7 +68,9 @@ Modern, güvenli ve performans odaklı portfolio websitesi. Next.js 14, TypeScri
 - 📊 Model karşılaştırma tools
 
 </td>
-<td width="33%">
+</tr>
+<tr>
+<td colspan="3">
 
 #### 🎵 [TuneSync](https://github.com/ArslanKG/MusicTransferHub)
 **Playlist Transfer API**
