@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiGithub, FiLinkedin, FiMail, FiDownload, FiEye } from 'react-icons/fi'
+import { FiGithub, FiLinkedin, FiMail, FiEye } from 'react-icons/fi'
 import TypewriterEffect from '@/components/TypewriterEffect'
+import CVDownloadDropdown from '@/components/CVDownloadDropdown'
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false)
@@ -163,16 +164,7 @@ const Hero = () => {
               </motion.span>
             </motion.button>
 
-            <motion.a
-              href="/pdf/CV.pdf"
-              download
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-gray-400 hover:border-blue-400 text-gray-300 hover:text-blue-400 px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center gap-2"
-            >
-              <FiDownload />
-              CV İndir
-            </motion.a>
+            <CVDownloadDropdown variant="secondary" />
           </motion.div>
 
           {/* Social Links */}
