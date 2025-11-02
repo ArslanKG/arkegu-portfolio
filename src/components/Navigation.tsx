@@ -3,10 +3,13 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +24,7 @@ const Navigation = () => {
     { name: 'Hakkımda', href: '#about' },
     { name: 'Deneyim', href: '#experience' },
     { name: 'Projeler', href: '#projects' },
+    { name: 'Blog', href: '/blog' },
     { name: 'İletişim', href: '#contact' },
   ]
 
@@ -30,6 +34,21 @@ const Navigation = () => {
       element.scrollIntoView({ behavior: 'smooth' })
     }
     setIsOpen(false)
+  }
+
+  const handleNavClick = (href: string) => {
+    if (href.startsWith('#')) {
+      scrollToSection(href)
+    } else {
+      setIsOpen(false)
+    }
+  }
+
+  const isActive = (href: string) => {
+    if (href.startsWith('#')) {
+      return false // Anchor links don't have active state in this context
+    }
+    return pathname === href
   }
 
   return (
@@ -51,45 +70,82 @@ const Navigation = () => {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex space-x-4">
-              {navItems.map((item, index) => (
-                <motion.button
-                  key={item.name}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 0 20px rgba(147, 51, 234, 0.6)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection(item.href)}
-                  className="relative group px-4 py-2 border border-gray-600/50 bg-gray-900/30 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/70 hover:bg-gradient-to-r hover:from-purple-900/20 hover:to-blue-900/20"
-                >
-                  {/* Animated background gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-blue-600/0 to-cyan-600/0 group-hover:from-purple-600/10 group-hover:via-blue-600/10 group-hover:to-cyan-600/10 transition-all duration-500"></div>
-                  
-                  {/* Hexagonal corners */}
-                  <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
-                  <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
-                  <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
-                  <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
-                  
-                  {/* Terminal-style brackets */}
-                  <span className="relative z-10 text-gray-300 group-hover:text-white transition-all duration-300 font-mono">
-                    <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">[</span>
-                    <span className="mx-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 transition-all duration-300">
-                      {item.name}
+              {navItems.map((item, index) => {
+                const isActiveItem = isActive(item.href)
+                const baseClasses = `relative group px-4 py-2 border backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/70 hover:bg-gradient-to-r hover:from-purple-900/20 hover:to-blue-900/20 ${
+                  isActiveItem
+                    ? 'border-purple-500/70 bg-gradient-to-r from-purple-900/30 to-blue-900/30'
+                    : 'border-gray-600/50 bg-gray-900/30'
+                }`
+                
+                const content = (
+                  <>
+                    {/* Animated background gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 via-blue-600/0 to-cyan-600/0 group-hover:from-purple-600/10 group-hover:via-blue-600/10 group-hover:to-cyan-600/10 transition-all duration-500"></div>
+                    
+                    {/* Hexagonal corners */}
+                    <div className="absolute top-0 left-0 w-2 h-2 border-l border-t border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
+                    <div className="absolute top-0 right-0 w-2 h-2 border-r border-t border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
+                    <div className="absolute bottom-0 left-0 w-2 h-2 border-l border-b border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
+                    <div className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-purple-500/0 group-hover:border-purple-500/70 transition-all duration-300"></div>
+                    
+                    {/* Terminal-style brackets */}
+                    <span className="relative z-10 text-gray-300 group-hover:text-white transition-all duration-300 font-mono">
+                      <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">[</span>
+                      <span className={`mx-1 transition-all duration-300 ${
+                        isActiveItem
+                          ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400'
+                          : 'group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400'
+                      }`}>
+                        {item.name}
+                      </span>
+                      <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">]</span>
                     </span>
-                    <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">]</span>
-                  </span>
-                  
-                  {/* Glow effect */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/0 to-cyan-500/0 group-hover:from-purple-500/20 group-hover:to-cyan-500/20 blur-sm transition-all duration-300"></div>
-                  
-                  {/* Bottom scan line */}
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 group-hover:w-full transition-all duration-500"></div>
-                </motion.button>
-              ))}
+                    
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500/0 to-cyan-500/0 group-hover:from-purple-500/20 group-hover:to-cyan-500/20 blur-sm transition-all duration-300"></div>
+                    
+                    {/* Bottom scan line */}
+                    <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-purple-400 to-cyan-400 transition-all duration-500 ${
+                      isActiveItem ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}></div>
+                  </>
+                )
+
+                return item.href.startsWith('#') ? (
+                  <motion.button
+                    key={item.name}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{
+                      scale: 1.05,
+                      boxShadow: "0 0 20px rgba(147, 51, 234, 0.6)",
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleNavClick(item.href)}
+                    className={baseClasses}
+                  >
+                    {content}
+                  </motion.button>
+                ) : (
+                  <Link key={item.name} href={item.href} onClick={() => handleNavClick(item.href)}>
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0 0 20px rgba(147, 51, 234, 0.6)",
+                      }}
+                      whileTap={{ scale: 0.95 }}
+                      className={baseClasses}
+                    >
+                      {content}
+                    </motion.div>
+                  </Link>
+                )
+              })}
             </div>
 
             {/* Mobile Menu Button */}
@@ -127,39 +183,78 @@ const Navigation = () => {
               </div>
               
               <div className="mt-16 space-y-4 relative z-10">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{
-                      scale: 1.02,
-                      x: 5,
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                    onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left relative group px-4 py-3 border border-gray-600/30 bg-gray-800/50 backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:bg-gradient-to-r hover:from-purple-900/30 hover:to-blue-900/30"
-                  >
-                    {/* Animated background */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 to-cyan-600/0 group-hover:from-purple-600/20 group-hover:to-cyan-600/20 transition-all duration-500"></div>
-                    
-                    {/* Corner accents */}
-                    <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-cyan-400/0 group-hover:border-cyan-400/70 transition-all duration-300"></div>
-                    <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-purple-400/0 group-hover:border-purple-400/70 transition-all duration-300"></div>
-                    
-                    <span className="relative z-10 text-gray-300 group-hover:text-white font-mono text-lg transition-all duration-300">
-                      <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{">"}</span>
-                      <span className="mx-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 transition-all duration-300">
-                        {item.name}
+                {navItems.map((item, index) => {
+                  const isActiveItem = isActive(item.href)
+                  const baseClasses = `block w-full text-left relative group px-4 py-3 border backdrop-blur-sm rounded-lg overflow-hidden transition-all duration-300 hover:border-purple-500/50 hover:bg-gradient-to-r hover:from-purple-900/30 hover:to-blue-900/30 ${
+                    isActiveItem
+                      ? 'border-purple-500/50 bg-gradient-to-r from-purple-900/40 to-blue-900/40'
+                      : 'border-gray-600/30 bg-gray-800/50'
+                  }`
+                  
+                  const content = (
+                    <>
+                      {/* Animated background */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 to-cyan-600/0 group-hover:from-purple-600/20 group-hover:to-cyan-600/20 transition-all duration-500"></div>
+                      
+                      {/* Corner accents */}
+                      <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-cyan-400/0 group-hover:border-cyan-400/70 transition-all duration-300"></div>
+                      <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-purple-400/0 group-hover:border-purple-400/70 transition-all duration-300"></div>
+                      
+                      <span className="relative z-10 text-gray-300 group-hover:text-white font-mono text-lg transition-all duration-300">
+                        <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{">"}</span>
+                        <span className={`mx-2 transition-all duration-300 ${
+                          isActiveItem
+                            ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400'
+                            : 'group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400'
+                        }`}>
+                          {item.name}
+                        </span>
+                        <span className="text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{"_"}</span>
                       </span>
-                      <span className="text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">{"_"}</span>
-                    </span>
-                    
-                    {/* Side glow */}
-                    <div className="absolute left-0 top-0 w-1 h-full bg-gradient-to-b from-cyan-400/0 to-purple-400/0 group-hover:from-cyan-400/70 group-hover:to-purple-400/70 transition-all duration-500"></div>
-                  </motion.button>
-                ))}
+                      
+                      {/* Side glow */}
+                      <div className={`absolute left-0 top-0 w-1 h-full bg-gradient-to-b transition-all duration-500 ${
+                        isActiveItem
+                          ? 'from-cyan-400/70 to-purple-400/70'
+                          : 'from-cyan-400/0 to-purple-400/0 group-hover:from-cyan-400/70 group-hover:to-purple-400/70'
+                      }`}></div>
+                    </>
+                  )
+
+                  return item.href.startsWith('#') ? (
+                    <motion.button
+                      key={item.name}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{
+                        scale: 1.02,
+                        x: 5,
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleNavClick(item.href)}
+                      className={baseClasses}
+                    >
+                      {content}
+                    </motion.button>
+                  ) : (
+                    <Link key={item.name} href={item.href} onClick={() => handleNavClick(item.href)}>
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{
+                          scale: 1.02,
+                          x: 5,
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                        className={baseClasses}
+                      >
+                        {content}
+                      </motion.div>
+                    </Link>
+                  )
+                })}
               </div>
             </div>
           </motion.div>

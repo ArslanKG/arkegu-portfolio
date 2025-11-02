@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
     const API_KEY = process.env.BREVO_API_KEY
     const RECIPIENT_EMAIL = process.env.RECIPIENT_EMAIL
     const SENDER_NAME = process.env.SENDER_NAME || "Portfolio İletişim Formu"
-    const SENDER_EMAIL = process.env.SENDER_EMAIL || "noreply@arkegu-portfolio.com"
+    const SENDER_EMAIL = process.env.SENDER_EMAIL || "arkegugame@gmail.com"
     const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email"
 
     // Environment variables kontrolü

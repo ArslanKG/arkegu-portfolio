@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-xs {
+  font-size: 0.7rem;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -10,7 +14,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb: 229, 231, 235;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
@@ -280,4 +284,14 @@ body {
   50%,100% {
     bottom: 100%;
   }
+}
+
+.dark .dark\\:bg-background-dark:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(17 22 33 / var(--tw-bg-opacity, 1));
+}
+
+.dark .dark\\:text-gray-200:is(.dark *) {
+    --tw-text-opacity: 1;
+    color: rgb(229 231 235 / var(--tw-text-opacity, 1));
 }

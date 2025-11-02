@@ -28,6 +28,16 @@
     "type-check": "tsc --noEmit",
     "analyze": "cross-env ANALYZE=true next build",
     "security-audit": "npm audit --audit-level high",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset",
+    "db:deploy": "prisma migrate deploy",
+    "db:status": "prisma migrate status",
+    "db:seed": "prisma db seed",
+    "db:test": "node scripts/test-db.js",
+    "auth:test": "node scripts/test-auth.js",
+    "upload:test": "node scripts/test-upload-api.js",
     "mcp:dev": "node -r ts-node/register mcp/examples/basic-server.ts",
     "mcp:tool-example": "node -r ts-node/register mcp/examples/custom-tool.ts",
     "mcp:type-check": "tsc --noEmit --project mcp/tsconfig.json",
@@ -35,17 +45,25 @@
     "mcp:clean": "rimraf mcp/dist"
   },
   "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "@vercel/blob": "^0.15.1",
+    "bcryptjs": "^2.4.3",
+    "framer-motion": "^10.16.16",
     "next": "14.0.4",
+    "next-auth": "5.0.0-beta.4",
+    "next-themes": "^0.2.1",
+    "prisma": "^5.7.1",
     "react": "^18",
     "react-dom": "^18",
-    "framer-motion": "^10.16.16",
     "react-icons": "^4.12.0",
-    "next-themes": "^0.2.1",
     "react-intersection-observer": "^9.5.3",
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -53,6 +71,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   }
 }
