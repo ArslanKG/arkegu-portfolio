@@ -178,27 +178,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       {/* Hero Section with Background */}
       <div className="relative h-96 overflow-hidden">
         {/* Background Image */}
-        {post.coverImage ? (
-          <div className="absolute inset-0">
-            <Image
-              src={post.coverImage}
-              alt={post.title}
-              fill
-              className="object-cover"
-              sizes="100vw"
-              quality={80}
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
-          </div>
-        ) : (
-          <div 
-            className="absolute inset-0 bg-center bg-no-repeat bg-cover" 
-            style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYgR5xqcOlc32P5mVmT0zVG5twUgEKlU3WdJTWOtS40Yij-2hQn-v6nZsg_1L3-nCUhtf0s6z6hzn8yTUyY-4MkxawoVP-Ol9UT3wqfcHI0KZvQIBEtFd1zS7ZJP-BRIOeJ_wS8OL0XNNQMeRgPiFQhOO6C92DIeSpggp668IyD8y2UlSPTcjn7loW4f73jNlCavl7I6sIHVVFbJveklHwq3UeNz7ewrB_4eu6FXejfyR6JqR6NI9oSmeQhLRzDAOCLKbXrEHYEZUa")' }}
-          >
-            <div className="absolute inset-0 bg-black/50" />
-          </div>
-        )}
+        <div 
+          className="absolute inset-0 bg-center bg-no-repeat bg-cover" 
+          style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuDYgR5xqcOlc32P5mVmT0zVG5twUgEKlU3WdJTWOtS40Yij-2hQn-v6nZsg_1L3-nCUhtf0s6z6hzn8yTUyY-4MkxawoVP-Ol9UT3wqfcHI0KZvQIBEtFd1zS7ZJP-BRIOeJ_wS8OL0XNNQMeRgPiFQhOO6C92DIeSpggp668IyD8y2UlSPTcjn7loW4f73jNlCavl7I6sIHVVFbJveklHwq3UeNz7ewrB_4eu6FXejfyR6JqR6NI9oSmeQhLRzDAOCLKbXrEHYEZUa")' }}>
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
         
         {/* Navigation */}
         <nav className="relative z-10 p-6">
