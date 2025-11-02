@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
@@ -17,6 +18,9 @@ import {
   FiLoader,
   FiAlertCircle
 } from 'react-icons/fi'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { generateSlug, generateExcerpt } from '@/lib/blog-utils'
 import type { BlogPost, CreateBlogPostRequest, UpdateBlogPostRequest } from '@/types/blog'
 
@@ -592,20 +596,28 @@ const PostEditor = ({ post, onSave }: PostEditorProps) => {
                 ) : (
                   // Preview
                   <div className="w-full h-[500px] p-4 bg-gray-800/30 border border-gray-600/50 rounded-lg overflow-y-auto">
-                    <div className="prose prose-invert prose-blue max-w-none">
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: formData.content
-                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                            .replace(/`(.*?)`/g, '<code class="px-1 py-0.5 bg-gray-700 rounded text-sm">$1</code>')
-                            .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold text-white mt-6 mb-3">$1</h3>')
-                            .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold text-white mt-6 mb-4">$1</h2>')
-                            .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-bold text-white mt-6 mb-4">$1</h1>')
-                            .replace(/\n/g, '<br>')
-                        }}
-                      />
-                    </div>
+                    <ReactMarkdown
+                      className="prose prose-invert prose-blue max-w-none"
+                      remarkPlugins={[remarkGfm]}
+                      rehypePlugins={[rehypeRaw]}
+                      components={{
+                        img: ({ node, ...props }) => {
+                          if (!props.src) return null
+                          return (
+                            <Image
+                              {...props}
+                              src={props.src}
+                              width={700}
+                              height={400}
+                              className="rounded-lg"
+                              alt={props.alt || ''}
+                            />
+                          )
+                        },
+                      }}
+                    >
+                      {formData.content}
+                    </ReactMarkdown>
                   </div>
                 )}
               </div>
