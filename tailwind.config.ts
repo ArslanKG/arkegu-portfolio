@@ -33,7 +33,8 @@ const config: Config = {
           700: '#a21caf',
           800: '#86198f',
           900: '#701a75',
-        }
+        },
+        'background-dark': 'rgb(17 22 33 / <alpha-value>)',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
@@ -73,6 +74,7 @@ const config: Config = {
         }
       },
       fontFamily: {
+        'display': ['Inter', 'sans-serif'],
         'mono': ['var(--font-mono)', 'monospace'],
         'sans': ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
@@ -86,6 +88,8 @@ const config: Config = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }
 export default config

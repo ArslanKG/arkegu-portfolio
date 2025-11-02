@@ -204,6 +204,9 @@ data/exports/
 content/drafts/
 posts/drafts/
 
+# AI Reference Documentation (development only)
+AI_REFERANS_DOKUMENTASYONU.md
+
 # User uploads (if any)
 uploads/
 user-content/

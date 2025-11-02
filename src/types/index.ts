@@ -74,3 +74,12 @@ export interface SecurityHeaders {
   'X-XSS-Protection': string
   'Permissions-Policy': string
 }
+
+// Blog Types - Re-export from blog.ts
+export type {
+  BlogPost,
+  BlogMetadata,
+  BlogCardProps,
+  BlogCategory,
+  BlogTag
+} from './blog'
