@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { FiArrowLeft, FiCalendar, FiClock, FiTag, FiShare2, FiTwitter, FiLinkedin, FiFacebook, FiLink, FiGithub, FiMail } from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { prisma } from "@/lib/prisma";
 import { BlogPost, Comment } from "@/types/blog";
 import CommentForm from "@/components/blog/CommentForm";
@@ -272,7 +273,27 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <SocialShare post={post} url={currentUrl} />
               </div>
               <div className="prose prose-gray dark:prose-invert max-w-none">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    img: ({ node, ...props }) => {
+                      if (!props.src) return null
+                      return (
+                        <Image
+                          {...props}
+                          src={props.src}
+                          width={700}
+                          height={400}
+                          className="rounded-lg"
+                          alt={props.alt || ''}
+                        />
+                      )
+                    },
+                  }}
+                >
+                  {post.content}
+                </ReactMarkdown>
               </div>
               <AuthorBio />
             </div>
