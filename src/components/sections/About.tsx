@@ -126,7 +126,7 @@ const About = () => {
               <p className="text-lg text-gray-300 leading-relaxed">
                 <strong className="text-orange-400">Jenkins, Jira, Bitbucket</strong> gibi DevOps araçlarıyla
                 Agile metodolojiler kullanarak, işletmelerin alış-satış takibi, stok yönetimi,
-                cari hesap takibi gibi <strong className="text-cyan-400">ön muhasebe ihtiyaçlarını</strong>
+                cari hesap takibi gibi <strong className="text-cyan-400">ön muhasebe ihtiyaçlarını </strong>
                 karşılayan SaaS çözümler geliştiriyorum.
               </p>
 
