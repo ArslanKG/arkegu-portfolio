@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
+
+// Bundle Analyzer
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const nextConfig = {
   // Güvenlik headers
   async headers() {
@@ -47,7 +53,6 @@ const nextConfig = {
   // Görsel optimizasyonu
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['github.com', 'codepen.io', 'vercel.app'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -73,10 +78,27 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'codepen.io',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Cache süresi optimizasyonu
     minimumCacheTTL: 60,
   },
 
@@ -85,6 +107,18 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   swcMinify: true,
+
+  // Experimental features
+  experimental: {
+    optimizePackageImports: ['framer-motion', 'react-icons', 'react-markdown'],
+  },
+
+  // Modular imports (Tree-shaking için)
+  modularizeImports: {
+    'react-icons': {
+      transform: 'react-icons/{{member}}',
+    },
+  },
 
   // Bundle analyzer (sadece gerektiğinde)
   webpack: (config, { isServer }) => {
@@ -110,4 +144,4 @@ const nextConfig = {
   output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)

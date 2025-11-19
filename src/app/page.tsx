@@ -1,40 +1,37 @@
 "use client"
 
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
 import dynamic from 'next/dynamic'
-import Hero from '@/components/sections/Hero'
-import About from '@/components/sections/About'
-import Experience from '@/components/sections/Experience'
-import Projects from '@/components/sections/Projects'
-import Contact from '@/components/sections/Contact'
 import Navigation from '@/components/Navigation'
 import ThemeToggle from '@/components/ThemeToggle'
+import Hero from '@/components/sections/Hero'
 
-// Sadece ParticleBackground'u lazy load et (non-critical)
-const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), {
+// Lazy load SADECE non-critical component'ler
+const About = dynamic(() => import('@/components/sections/About'), {
   ssr: false,
-  loading: () => <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" />
+})
+
+const Experience = dynamic(() => import('@/components/sections/Experience'), {
+  ssr: false,
+})
+
+const Projects = dynamic(() => import('@/components/sections/Projects'), {
+  ssr: false,
+})
+
+const Contact = dynamic(() => import('@/components/sections/Contact'), {
+  ssr: false,
 })
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center">
-        <div className="animate-pulse text-cyan-400 text-xl">Portfolio yükleniyor...</div>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 dark:from-black dark:via-gray-900 dark:to-black relative overflow-hidden">
-      <ParticleBackground />
+      {/* Basit CSS Animated Background - canvas yerine */}
+      <div className="fixed inset-0 opacity-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(76,29,149,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,rgba(139,92,246,0.3),transparent_50%)]" />
+        <div className="absolute inset-0 animate-pulse bg-gradient-to-tr from-transparent via-blue-500/5 to-transparent" style={{ animationDuration: '8s' }} />
+      </div>
       
       {/* Fixed Navigation */}
       <Navigation />
@@ -42,20 +39,13 @@ export default function Home() {
       {/* Theme Toggle */}
       <ThemeToggle />
       
-      {/* Main Content */}
-      <main className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-0"
-        >
-          <Hero />
-          <About />
-          <Experience />
-          <Projects />
-          <Contact />
-        </motion.div>
+      {/* Main Content - motion.div kaldırıldı (framer-motion) */}
+      <main className="relative z-10 animate-fadeIn">
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Contact />
       </main>
       
       {/* Cyber Grid Background */}

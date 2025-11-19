@@ -116,8 +116,10 @@ export default function BlogHero({ featuredPost }: BlogHeroProps) {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       sizes="(max-width: 1024px) 100vw, 50vw"
-                      quality={80}
+                      quality={85}
                       priority
+                      placeholder="blur"
+                      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjQ3NSIgZmlsbD0iI2VlZSIvPjwvc3ZnPg=="
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-transparent lg:from-blue-600/40" />
                   </div>

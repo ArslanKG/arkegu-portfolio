@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FiArrowLeft } from "react-icons/fi";
 import { prisma } from "@/lib/prisma";
-import BlogCard from "@/components/blog/BlogCard";
-import BlogHero from "@/components/blog/BlogHero";
-import BlogSidebar from "@/components/blog/BlogSidebar";
-import BlogPagination, { BlogPaginationInfo } from "@/components/blog/BlogPagination";
+import dynamic from "next/dynamic";
+
+// Lazy load blog component'leri (performans için)
+const BlogCard = dynamic(() => import("@/components/blog/BlogCard"), { ssr: true });
+const BlogHero = dynamic(() => import("@/components/blog/BlogHero"), { ssr: true });
+const BlogSidebar = dynamic(() => import("@/components/blog/BlogSidebar"), { ssr: false });
+const BlogPagination = dynamic(() => import("@/components/blog/BlogPagination").then(mod => ({ default: mod.default })), { ssr: false });
+const BlogPaginationInfo = dynamic(() => import("@/components/blog/BlogPagination").then(mod => ({ default: mod.BlogPaginationInfo })), { ssr: false });
 
 export const metadata: Metadata = {
   title: "Blog | Arslan Kemal Gündüz",
@@ -60,10 +64,20 @@ async function getBlogPosts(page: number = 1, tag?: string, query?: string) {
     const [posts, totalPosts] = await Promise.all([
       prisma.blogPost.findMany({
         where,
-        orderBy: { publishedAt: 'desc' },
-        include: {
+        select: {
+          id: true,
+          title: true,
+          slug: true,
+          excerpt: true,
+          coverImage: true,
+          publishedAt: true,
+          readTime: true,
+          tags: true,
+          isFeatured: true,
+          createdAt: true,
           _count: { select: { comments: true } }
         },
+        orderBy: { publishedAt: 'desc' },
         skip,
         take: take
       }),
@@ -87,10 +101,20 @@ async function getFeaturedPost() {
         isFeatured: true,
         publishedAt: { lte: new Date() }
       },
-      orderBy: { publishedAt: 'desc' },
-      include: {
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        excerpt: true,
+        coverImage: true,
+        publishedAt: true,
+        createdAt: true,
+        readTime: true,
+        tags: true,
+        isFeatured: true,
         _count: { select: { comments: true } }
-      }
+      },
+      orderBy: { publishedAt: 'desc' },
     });
 
     if (!post) return null;
@@ -120,10 +144,16 @@ async function getPopularPosts() {
         published: true,
         publishedAt: { lte: new Date() }
       },
-      orderBy: { publishedAt: 'desc' },
-      include: {
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        publishedAt: true,
+        createdAt: true,
         _count: { select: { comments: true } }
-      }
+      },
+      orderBy: { publishedAt: 'desc' },
+      take: 5, // Sadece 5 post yeterli
     });
 
     return posts.map(post => ({
