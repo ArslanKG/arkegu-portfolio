@@ -9,18 +9,30 @@ import BlogPagination, { BlogPaginationInfo } from "@/components/blog/BlogPagina
 
 export const metadata: Metadata = {
   title: "Blog | Arslan Kemal Gündüz",
-  description: "Yazılım geliştirme, teknoloji ve kişisel deneyimler hakkında yazılar",
-  keywords: ["blog", "yazılım geliştirme", "teknoloji", "programlama", "software development"],
+  description: "Yazılım geliştirme, teknoloji ve kişisel deneyimler hakkında yazılar. .NET, React, Next.js, Cloud ve FinTech konularında teknik içerikler.",
+  keywords: ["blog", "yazılım geliştirme", "teknoloji", "programlama", "software development", "dotnet", "react", "nextjs", "cloud", "fintech"],
   openGraph: {
     title: "Blog | Arslan Kemal Gündüz",
     description: "Yazılım geliştirme, teknoloji ve kişisel deneyimler hakkında yazılar",
-    url: "https://arslankg.dev/blog",
+    url: "https://arkegu.com.tr/blog",
     type: "website",
+    images: [
+      {
+        url: '/images/arkegu-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'Arslan Kemal Gündüz Blog',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Blog | Arslan Kemal Gündüz",
     description: "Yazılım geliştirme, teknoloji ve kişisel deneyimler hakkında yazılar",
+    images: ['/images/arkegu-logo.png'],
+  },
+  alternates: {
+    canonical: '/blog',
   },
 };
 

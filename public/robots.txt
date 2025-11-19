@@ -1,8 +1,14 @@
+# Tüm botlara izin ver
 User-agent: *
 Allow: /
 
-# Host
-Host: https://arkegu-portfolio.vercel.app
+# Admin panelini koru
+User-agent: *
+Disallow: /admin/
+Disallow: /api/auth/
 
-# Sitemaps
-Sitemap: https://arkegu-portfolio.vercel.app/sitemap.xml
+# Host
+Host: https://arkegu.com.tr
+
+# Sitemap
+Sitemap: https://arkegu.com.tr/sitemap.xml

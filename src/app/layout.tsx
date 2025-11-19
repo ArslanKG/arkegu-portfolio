@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SessionProvider } from '@/components/SessionProvider'
+import StructuredData from '@/components/StructuredData'
 import './globals.css'
 
 const inter = Inter({ 
@@ -19,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Arslan Kemal Gündüz | Senior Software Developer',
   description: 'Senior Software Developer specializing in .NET, Cloud, FinTech, and modern web technologies. Building scalable SaaS solutions and innovative applications.',
-  keywords: ['software developer', 'react', 'nextjs', 'typescript', 'dotnet', 'cloud', 'fintech', 'saas'],
+  keywords: ['software developer', 'react', 'nextjs', 'typescript', 'dotnet', 'cloud', 'fintech', 'saas', 'full-stack developer', 'yazılım geliştirici'],
   authors: [{ name: 'Arslan Kemal Gündüz' }],
   creator: 'Arslan Kemal Gündüz',
   publisher: 'Arslan Kemal Gündüz',
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://arslankg.dev'),
+  metadataBase: new URL('https://arkegu.com.tr'),
   alternates: {
     canonical: '/',
     languages: {
@@ -39,7 +40,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Arslan Kemal Gündüz | Senior Software Developer',
     description: 'Senior Software Developer specializing in .NET, Cloud, FinTech, and modern web technologies.',
-    url: 'https://arslankg.dev',
+    url: 'https://arkegu.com.tr',
     siteName: 'Arslan Kemal Gündüz Portfolio',
     images: [
       {
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
         alt: 'Arslan Kemal Gündüz - Senior Software Developer',
       },
     ],
-    locale: 'en_US',
+    locale: 'tr_TR',
     type: 'website',
   },
   twitter: {
@@ -70,7 +71,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'google-site-verification-code',
+    google: 'google-site-verification-code', // Google Search Console'dan alınan kod buraya eklenecek
   },
 }
 
@@ -80,7 +81,24 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="tr" suppressHydrationWarning>
+      <head>
+        <StructuredData 
+          type="person" 
+          data={{
+            name: 'Arslan Kemal Gündüz',
+            url: 'https://arkegu.com.tr',
+            jobTitle: 'Senior Software Developer',
+          }} 
+        />
+        <StructuredData 
+          type="website" 
+          data={{
+            name: 'Arslan Kemal Gündüz Portfolio',
+            url: 'https://arkegu.com.tr',
+          }} 
+        />
+      </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-display antialiased bg-white dark:bg-background-dark`}>
         <SessionProvider>
           <ThemeProvider

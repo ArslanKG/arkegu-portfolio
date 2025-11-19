@@ -11,6 +11,7 @@ import { BlogPost, Comment } from "@/types/blog";
 import CommentForm from "@/components/blog/CommentForm";
 import CommentList from "@/components/blog/CommentList";
 import SocialShare from "@/components/blog/SocialShare";
+import StructuredData from "@/components/StructuredData";
 
 interface BlogDetailPageProps {
   params: {
@@ -82,9 +83,10 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
     openGraph: {
       title: post.title,
       description: post.excerpt || `${post.title} - Arslan Kemal Gündüz'ün blog yazısı`,
-      url: `https://arslankg.dev/blog/${post.slug}`,
+      url: `https://arkegu.com.tr/blog/${post.slug}`,
       type: "article",
       publishedTime: publishedDate,
+      modifiedTime: post.updatedAt.toISOString().split('T')[0],
       authors: ["Arslan Kemal Gündüz"],
       tags: post.tags,
       images: post.coverImage ? [
@@ -94,16 +96,23 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
           height: 630,
           alt: post.title,
         }
-      ] : [],
+      ] : [
+        {
+          url: '/images/arkegu-logo.png',
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        }
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt || `${post.title} - Arslan Kemal Gündüz'ün blog yazısı`,
-      images: post.coverImage ? [post.coverImage] : [],
+      images: post.coverImage ? [post.coverImage] : ['/images/arkegu-logo.png'],
     },
     alternates: {
-      canonical: `https://arslankg.dev/blog/${post.slug}`,
+      canonical: `/blog/${post.slug}`,
     },
   };
 }
@@ -171,10 +180,23 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const publishedDate = post.publishedAt || post.createdAt;
   const readTimeText = post.readTime ? `${post.readTime} dakika okuma` : "5 dakika okuma";
-  const currentUrl = `https://arslankg.dev/blog/${post.slug}`;
+  const currentUrl = `https://arkegu.com.tr/blog/${post.slug}`;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-background-dark transition-colors duration-300">
+    <>
+      <StructuredData 
+        type="article" 
+        data={{
+          headline: post.title,
+          description: post.excerpt || post.title,
+          image: post.coverImage || 'https://arkegu.com.tr/images/arkegu-logo.png',
+          datePublished: publishedDate.toISOString(),
+          dateModified: post.updatedAt.toISOString(),
+          author: 'Arslan Kemal Gündüz',
+          url: currentUrl,
+        }} 
+      />
+      <div className="min-h-screen bg-gray-50 dark:bg-background-dark transition-colors duration-300">
       {/* Hero Section with Background */}
       <div className="relative h-96 overflow-hidden">
         {/* Background Image */}
@@ -344,6 +366,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </div>
         </div>
       </footer>
-    </div>
+      </div>
+    </>
   );
 }
