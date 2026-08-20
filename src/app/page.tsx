@@ -1,65 +1,132 @@
-"use client"
+import Image from 'next/image'
+import {
+  FiArrowUpRight,
+  FiBookOpen,
+  FiFileText,
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+} from 'react-icons/fi'
 
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
-import dynamic from 'next/dynamic'
-import Hero from '@/components/sections/Hero'
-import About from '@/components/sections/About'
-import Experience from '@/components/sections/Experience'
-import Projects from '@/components/sections/Projects'
-import Contact from '@/components/sections/Contact'
-import Navigation from '@/components/Navigation'
-import ThemeToggle from '@/components/ThemeToggle'
-
-// Sadece ParticleBackground'u lazy load et (non-critical)
-const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), {
-  ssr: false,
-  loading: () => <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900" />
-})
+const links = [
+  {
+    label: 'GitHub',
+    description: 'Projects, code and experiments',
+    href: 'https://github.com/ArslanKG',
+    icon: FiGithub,
+    external: true,
+  },
+  {
+    label: 'LinkedIn',
+    description: 'Experience and professional profile',
+    href: 'https://www.linkedin.com/in/arslan-kemal-gunduz',
+    icon: FiLinkedin,
+    external: true,
+  },
+  {
+    label: 'Blog',
+    description: 'Notes, ideas and things I am building',
+    href: '/blog',
+    icon: FiBookOpen,
+    external: false,
+  },
+  {
+    label: 'CV · Türkçe',
+    description: 'Özgeçmiş · PDF',
+    href: '/pdf/CV_TR.pdf',
+    icon: FiFileText,
+    external: true,
+  },
+  {
+    label: 'CV · English',
+    description: 'Resume · PDF',
+    href: '/pdf/CV_EN.pdf',
+    icon: FiFileText,
+    external: true,
+  },
+  {
+    label: 'Email',
+    description: 'Get in touch',
+    href: 'mailto:arslankemalgunduz@gmail.com',
+    icon: FiMail,
+    external: false,
+  },
+]
 
 export default function Home() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center">
-        <div className="animate-pulse text-cyan-400 text-xl">Portfolio yükleniyor...</div>
-      </div>
-    )
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 dark:from-black dark:via-gray-900 dark:to-black relative overflow-hidden">
-      <ParticleBackground />
-      
-      {/* Fixed Navigation */}
-      <Navigation />
-      
-      {/* Theme Toggle */}
-      <ThemeToggle />
-      
-      {/* Main Content */}
-      <main className="relative z-10">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="space-y-0"
-        >
-          <Hero />
-          <About />
-          <Experience />
-          <Projects />
-          <Contact />
-        </motion.div>
-      </main>
-      
-      {/* Cyber Grid Background */}
-      <div className="fixed inset-0 cyber-grid opacity-10 pointer-events-none" />
-    </div>
+    <main className="min-h-screen bg-[#09090b] px-5 py-10 text-zinc-100 sm:px-8 sm:py-14">
+      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-xl items-center sm:min-h-[calc(100vh-7rem)]">
+        <section className="w-full">
+          <header className="mb-8">
+            <div className="mb-5 flex items-center gap-4">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+                <Image
+                  src="/images/arkegu-logo.png"
+                  alt="Arkegu"
+                  fill
+                  priority
+                  sizes="64px"
+                  className="object-contain p-2"
+                />
+              </div>
+
+              <div className="min-w-0">
+                <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-zinc-500">
+                  arkegu.com.tr
+                </p>
+                <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  Arslan Kemal Gündüz
+                </h1>
+              </div>
+            </div>
+
+            <p className="max-w-lg text-sm leading-6 text-zinc-400 sm:text-[15px]">
+              Software developer building products, tools and experiments.
+            </p>
+          </header>
+
+          <nav aria-label="Primary links" className="space-y-2.5">
+            {links.map((link) => {
+              const Icon = link.icon
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? '_blank' : undefined}
+                  rel={link.external ? 'noopener noreferrer' : undefined}
+                  className="group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] px-4 py-3.5 transition duration-200 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                >
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-black/20 text-zinc-400 transition group-hover:text-white">
+                    <Icon size={18} aria-hidden="true" />
+                  </span>
+
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-zinc-100">
+                      {link.label}
+                    </span>
+                    <span className="mt-0.5 block truncate text-xs text-zinc-500 sm:text-[13px]">
+                      {link.description}
+                    </span>
+                  </span>
+
+                  <FiArrowUpRight
+                    size={17}
+                    aria-hidden="true"
+                    className="shrink-0 text-zinc-600 transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300"
+                  />
+                </a>
+              )
+            })}
+          </nav>
+
+          <footer className="mt-8 flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-600">
+            <span>Arkegu</span>
+            <span>2026</span>
+          </footer>
+        </section>
+      </div>
+    </main>
   )
 }
