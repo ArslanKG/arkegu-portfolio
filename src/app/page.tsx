@@ -41,17 +41,11 @@ export default function Home() {
         className="absolute inset-0 bg-cover bg-[position:27%_center] sm:bg-center"
         style={{ backgroundImage: "url('/images/mummy-lord-background.webp')" }}
       />
-
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-black/[0.04] via-transparent to-black/20"
-      />
-
+      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/[0.04] via-transparent to-black/20" />
       <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-10 sm:px-8">
         <nav aria-label="Bağlantılar" className="w-full max-w-[430px] space-y-3.5">
           {links.map((link) => {
             const Icon = link.icon
-
             return (
               <a
                 key={link.label}
@@ -63,16 +57,8 @@ export default function Home() {
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] border border-[#d2a34f]/25 bg-[#d2a34f]/[0.07] text-[#d9aa52] transition group-hover:border-[#e2b55f]/45 group-hover:bg-[#d2a34f]/[0.11] group-hover:text-[#efc46f]">
                   <Icon size={20} aria-hidden="true" />
                 </span>
-
-                <span className="flex-1 text-[15px] font-medium tracking-[-0.01em] text-[#f5ead6]">
-                  {link.label}
-                </span>
-
-                <FiArrowUpRight
-                  size={18}
-                  aria-hidden="true"
-                  className="text-[#9f7b3e] transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#efc46f]"
-                />
+                <span className="flex-1 text-[15px] font-medium tracking-[-0.01em] text-[#f5ead6]">{link.label}</span>
+                <FiArrowUpRight size={18} aria-hidden="true" className="text-[#9f7b3e] transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#efc46f]" />
               </a>
             )
           })}
