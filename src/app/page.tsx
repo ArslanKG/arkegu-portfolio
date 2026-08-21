@@ -39,7 +39,7 @@ export default function Home() {
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-cover bg-[position:27%_center] sm:bg-center"
-        style={{ backgroundImage: "url('/images/mummy-lord-background.webp')" }}
+        style={{ backgroundImage: "url('/images/mummy-lord-background.webp?v=20260822')" }}
       />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-black/[0.04] via-transparent to-black/20" />
       <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-10 sm:px-8">
