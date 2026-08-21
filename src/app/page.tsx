@@ -1,52 +1,33 @@
-import Image from 'next/image'
 import {
   FiArrowUpRight,
   FiBookOpen,
   FiFileText,
-  FiGithub,
   FiLinkedin,
   FiMail,
 } from 'react-icons/fi'
 
 const links = [
   {
-    label: 'GitHub',
-    description: 'Projects, code and experiments',
-    href: 'https://github.com/ArslanKG',
-    icon: FiGithub,
-    external: true,
-  },
-  {
     label: 'LinkedIn',
-    description: 'Experience and professional profile',
     href: 'https://www.linkedin.com/in/arslan-kemal-gunduz',
     icon: FiLinkedin,
     external: true,
   },
   {
-    label: 'Blog',
-    description: 'Notes, ideas and things I am building',
-    href: '/blog',
+    label: 'Kitabım',
+    href: '#',
     icon: FiBookOpen,
     external: false,
+    comingSoon: true,
   },
   {
-    label: 'CV · Türkçe',
-    description: 'Özgeçmiş · PDF',
+    label: 'CV',
     href: '/pdf/CV_TR.pdf',
     icon: FiFileText,
     external: true,
   },
   {
-    label: 'CV · English',
-    description: 'Resume · PDF',
-    href: '/pdf/CV_EN.pdf',
-    icon: FiFileText,
-    external: true,
-  },
-  {
-    label: 'Email',
-    description: 'Get in touch',
+    label: 'Contact',
     href: 'mailto:arslankemalgunduz@gmail.com',
     icon: FiMail,
     external: false,
@@ -55,40 +36,52 @@ const links = [
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#09090b] px-5 py-10 text-zinc-100 sm:px-8 sm:py-14">
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-xl items-center sm:min-h-[calc(100vh-7rem)]">
-        <section className="w-full">
-          <header className="mb-8">
-            <div className="mb-5 flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-                <Image
-                  src="/images/arkegu-logo.png"
-                  alt="Arkegu"
-                  fill
-                  priority
-                  sizes="64px"
-                  className="object-contain p-2"
-                />
-              </div>
+    <main className="relative min-h-[100svh] overflow-hidden bg-[#080706] text-[#f4ead7]">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-cover bg-[position:36%_center] sm:bg-center"
+        style={{ backgroundImage: "url('/images/mummy-lord-background.webp')" }}
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(8,7,6,0.28)_0%,rgba(8,7,6,0.58)_48%,rgba(8,7,6,0.76)_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/45"
+      />
 
-              <div className="min-w-0">
-                <p className="mb-1 font-mono text-[11px] uppercase tracking-[0.28em] text-zinc-500">
-                  arkegu.com.tr
-                </p>
-                <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  Arslan Kemal Gündüz
-                </h1>
-              </div>
-            </div>
-
-            <p className="max-w-lg text-sm leading-6 text-zinc-400 sm:text-[15px]">
-              Software developer building products, tools and experiments.
+      <div className="relative z-10 flex min-h-[100svh] items-center justify-center px-5 py-10 sm:px-8">
+        <section className="w-full max-w-[390px] rounded-[30px] border border-[#d6a74f]/20 bg-[#090806]/70 p-5 shadow-[0_28px_90px_rgba(0,0,0,0.55)] backdrop-blur-xl sm:p-6">
+          <header className="mb-6 text-center">
+            <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.34em] text-[#c89339]">
+              arkegu.com.tr
             </p>
+            <h1 className="text-[22px] font-semibold tracking-[-0.03em] text-[#f4ead7]">
+              Arslan Kemal Gündüz
+            </h1>
           </header>
 
-          <nav aria-label="Primary links" className="space-y-2.5">
+          <nav aria-label="Bağlantılar" className="space-y-3">
             {links.map((link) => {
               const Icon = link.icon
+
+              if (link.comingSoon) {
+                return (
+                  <div
+                    key={link.label}
+                    className="flex min-h-[62px] items-center gap-3 rounded-2xl border border-[#d6a74f]/16 bg-black/25 px-4 text-[#f4ead7]/75"
+                  >
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d6a74f]/15 bg-[#d6a74f]/[0.05] text-[#d6a74f]">
+                      <Icon size={18} aria-hidden="true" />
+                    </span>
+                    <span className="flex-1 text-sm font-medium">{link.label}</span>
+                    <span className="text-[10px] uppercase tracking-[0.18em] text-[#b78a45]">
+                      Yakında
+                    </span>
+                  </div>
+                )
+              }
 
               return (
                 <a
@@ -96,35 +89,23 @@ export default function Home() {
                   href={link.href}
                   target={link.external ? '_blank' : undefined}
                   rel={link.external ? 'noopener noreferrer' : undefined}
-                  className="group flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.025] px-4 py-3.5 transition duration-200 hover:-translate-y-0.5 hover:border-white/[0.16] hover:bg-white/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                  className="group flex min-h-[62px] items-center gap-3 rounded-2xl border border-[#d6a74f]/20 bg-black/30 px-4 transition duration-200 hover:-translate-y-0.5 hover:border-[#d6a74f]/45 hover:bg-[#d6a74f]/[0.08] hover:shadow-[0_12px_30px_rgba(0,0,0,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6a74f]/60"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-black/20 text-zinc-400 transition group-hover:text-white">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#d6a74f]/20 bg-[#d6a74f]/[0.06] text-[#d6a74f] transition group-hover:bg-[#d6a74f]/[0.11] group-hover:text-[#efc36f]">
                     <Icon size={18} aria-hidden="true" />
                   </span>
-
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-sm font-medium text-zinc-100">
-                      {link.label}
-                    </span>
-                    <span className="mt-0.5 block truncate text-xs text-zinc-500 sm:text-[13px]">
-                      {link.description}
-                    </span>
+                  <span className="flex-1 text-sm font-medium text-[#f4ead7]">
+                    {link.label}
                   </span>
-
                   <FiArrowUpRight
                     size={17}
                     aria-hidden="true"
-                    className="shrink-0 text-zinc-600 transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-zinc-300"
+                    className="text-[#9d7b43] transition duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#efc36f]"
                   />
                 </a>
               )
             })}
           </nav>
-
-          <footer className="mt-8 flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-600">
-            <span>Arkegu</span>
-            <span>2026</span>
-          </footer>
         </section>
       </div>
     </main>
