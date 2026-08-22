@@ -1,10 +1,15 @@
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import {
+  Cormorant_Garamond,
+  Inter,
+  JetBrains_Mono,
+  Lora,
+} from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 import { SessionProvider } from '@/components/SessionProvider'
 import './globals.css'
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
@@ -13,6 +18,22 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
+  display: 'swap',
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-classical-heading',
+  display: 'swap',
+})
+
+const lora = Lora({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500'],
+  style: ['normal', 'italic'],
+  variable: '--font-classical-body',
   display: 'swap',
 })
 
@@ -81,7 +102,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-display antialiased bg-white dark:bg-background-dark`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} ${cormorant.variable} ${lora.variable} font-display antialiased bg-white dark:bg-background-dark`}>
         <SessionProvider>
           <ThemeProvider
             attribute="class"
